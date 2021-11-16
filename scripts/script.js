@@ -13,29 +13,32 @@ var app = new PIXI.Application({
 });
 document.getElementById("screen").appendChild(app.view);
 var stage = app.stage;
-/*
-class TEXT {
-  constructor(x,text) {
-    const square = new PIXI.square();
-    square.lineStyle(0);
-    ball.beginFill(colour, 1);
-    ball.drawCircle( 0, 0, radius);
-    ball.alpha=0;
-    this.radius = radius;
-    ball.endFill();
-    ball.pivot.x = radius/2;
-    ball.pivot.y =  radius/2;
-    ball.x =  x;
-    ball.y =  y;
-    app.stage.addChild(ball);
-    TweenMax.to(ball, 2, {pixi:{alpha:1}});
-    this.ball= ball;
-  }
+////
+var sqWidth = 20;
+var y = 200;
+var x = 200;
+var gap = 21;
+var SQUARE = /** @class */ (function () {
+    function SQUARE(y, x) {
+        var square = new PIXI.Graphics();
+        square.beginFill(0xFFFF00);
+        square.drawRect(0, 0, sqWidth, sqWidth);
+        square.pivot.x = sqWidth / 2;
+        square.pivot.y = sqWidth / 2;
+        square.x = x;
+        square.y = y;
+        stage.addChild(square);
+        this.square = square;
+    }
+    return SQUARE;
+}());
+var sqArray = [];
+for (var i = 1; i < 26; i++) {
+    sqArray.push(new SQUARE(y, x));
+    y += gap;
+    if (i % 5 === 0) {
+        x += 21;
+        y -= gap * 5;
+    }
+    ;
 }
-*/
-var square = new PIXI.Graphics();
-square.beginFill(0xFFFF00);
-square.drawRect(0, 0, 200, 200);
-square.x = 200;
-square.y = 200;
-stage.addChild(square);
