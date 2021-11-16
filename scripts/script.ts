@@ -74,4 +74,4 @@ const sq1= new PIXI.Graphics();
     sq1.y = y;
     stage.addChild(sq1);
 
-    TweenMax.to(sq1, 5, { pixi: {rotation:45, scale:0.5, x:100} });
+    gsap.fromTo(sq1, 1, { pixi: {rotation:0, scale:1, x:100}, { pixi: {rotation:360, scale:2, x:100},  repeat: -1 });
