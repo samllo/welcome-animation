@@ -20,6 +20,7 @@ const stage = app.stage;
 
 ////
 
+//Square class 
 const sqWidth = 20;
 const y = 200;
 const x = 200;
@@ -38,9 +39,8 @@ class SQUARE{
   }
 }
 
+// 5x5 square grid
 const sqArray = [];
-
-
 for (let i = 1; i < 26; i++) {
   sqArray.push(new SQUARE(y,x));
   y+= gap;
@@ -50,5 +50,28 @@ for (let i = 1; i < 26; i++) {
   };
 }
 
+/*To solve this you can create an array of objects, give those objects the starting values and finalyy tween those values, like this:
+
+var array = [{a:1},{a:2},{a:3},{a:1},{a:2}],
+    amount = array.length;
+	
+for(var i = 0; i < amount; i++)
+{
+    var element = array[i];
+    TweenMax.to(element, 1, {a:0});
+}
+*/
 
 
+
+// basic animation 
+const sq1= new PIXI.Graphics();
+    sq1.beginFill(0xDE3249);
+    sq1.drawRect(0, 0, sqWidth, sqWidth);
+    sq1.pivot.x = sqWidth/2;
+    sq1.pivot.y =  sqWidth/2;
+    sq1.x = x;
+    sq1.y = y;
+    stage.addChild(sq1);
+
+    TweenMax.to(sq1, 5, { pixi: {rotation:45, scale:0.5, x:100} });
