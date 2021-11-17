@@ -24,7 +24,7 @@ const stage = app.stage;
 const sqWidth = 20;
 const y = 200;
 const x = 200;
-const gap = 21;
+const gap = 30;
 class SQUARE{
   constructor(y,x){
     const square = new PIXI.Graphics();
@@ -45,7 +45,7 @@ for (let i = 1; i < 26; i++) {
   sqArray.push(new SQUARE(y,x));
   y+= gap;
   if (i%5 === 0){
-    x+=21;
+    x+=gap;
     y-= gap*5;
   };
 }
@@ -74,4 +74,16 @@ const sq1= new PIXI.Graphics();
     sq1.y = y;
     stage.addChild(sq1);
 
-    gsap.fromTo(sq1, 1, { pixi: {rotation:0, scale:1, x:100}, { pixi: {rotation:360, scale:2, x:100},  repeat: -1 });
+const tl = new TimelineMax({repeat:-1});
+tl.to(sq1, 0.5, {pixi:{rotation:360, scale:2}}).to(sq1, 0.5, {pixi:{rotation:720, scale:1}});
+
+console.log(sqArray)
+console.log(sq1)
+
+
+for(var i = 0; i < 25; i++){ 
+  const element = sqArray[i].square;
+  const tl = new TimelineMax({repeat:-1});
+  tl.to(element, Math.random() , {pixi:{rotation:360, scale:1.2}}).to(element, Math.random() , {pixi:{rotation:720, scale:1}});
+};
+

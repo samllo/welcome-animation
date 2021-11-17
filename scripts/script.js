@@ -18,7 +18,7 @@ var stage = app.stage;
 var sqWidth = 20;
 var y = 200;
 var x = 200;
-var gap = 21;
+var gap = 30;
 var SQUARE = /** @class */ (function () {
     function SQUARE(y, x) {
         var square = new PIXI.Graphics();
@@ -35,11 +35,11 @@ var SQUARE = /** @class */ (function () {
 }());
 // 5x5 square grid
 var sqArray = [];
-for (var i = 1; i < 26; i++) {
+for (var i_1 = 1; i_1 < 26; i_1++) {
     sqArray.push(new SQUARE(y, x));
     y += gap;
-    if (i % 5 === 0) {
-        x += 21;
+    if (i_1 % 5 === 0) {
+        x += gap;
         y -= gap * 5;
     }
     ;
@@ -64,4 +64,13 @@ sq1.pivot.y = sqWidth / 2;
 sq1.x = x;
 sq1.y = y;
 stage.addChild(sq1);
-gsap.fromTo(sq1, 1, { pixi: { rotation: 0, scale: 1, x: 100 } }, { pixi: { rotation: 360, scale: 2, x: 100 }, repeat: -1 });
+var tl = new TimelineMax({ repeat: -1 });
+tl.to(sq1, 0.5, { pixi: { rotation: 360, scale: 2 } }).to(sq1, 0.5, { pixi: { rotation: 720, scale: 1 } });
+console.log(sqArray);
+console.log(sq1);
+for (var i = 0; i < 25; i++) {
+    var element = sqArray[i].square;
+    var tl_1 = new TimelineMax({ repeat: -1 });
+    tl_1.to(element, Math.random(), { pixi: { rotation: 360, scale: 1.2 } }).to(element, Math.random(), { pixi: { rotation: 720, scale: 1 } });
+}
+;
